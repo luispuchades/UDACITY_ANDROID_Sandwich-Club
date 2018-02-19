@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class DetailActivity extends AppCompatActivity {
@@ -27,7 +27,6 @@ public class DetailActivity extends AppCompatActivity {
     private TextView sandwichAlsoKnownAs;
     private TextView sandwichPlaceOfOrigin;
     private TextView sandwichDescription;
-    private ImageView sandwichImage;
     private TextView sandwichIngredients;
 
     @Override
@@ -54,7 +53,7 @@ public class DetailActivity extends AppCompatActivity {
 
         String[] sandwiches = getResources().getStringArray(R.array.sandwich_details);
         String json = sandwiches[position];
-        Sandwich sandwich = JsonUtils.parseSandwichJson(json);
+        sandwich = JsonUtils.parseSandwichJson(json);
         if (sandwich == null) {
             // Sandwich data unavailable
             closeOnError();
@@ -62,6 +61,11 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         populateUI();
+        Picasso.with(this)
+                .load(sandwich.getImage())
+                .into(ingredientsIv);
+
+        setTitle(sandwich.getMainName());
 
 
 
@@ -79,7 +83,6 @@ public class DetailActivity extends AppCompatActivity {
         sandwichAlsoKnownAs = findViewById(R.id.also_known_tv);
         sandwichPlaceOfOrigin = findViewById(R.id.origin_tv);
         sandwichDescription = findViewById(R.id.description_tv);
-        sandwichImage = findViewById(R.id.image_iv);
         sandwichIngredients = findViewById(R.id.ingredients_tv);
 
         /* Set text from JSON to TextViews*/
@@ -88,7 +91,7 @@ public class DetailActivity extends AppCompatActivity {
         sandwichDescription.setText(checkData(sandwich.getDescription()));
 
         /* Capture of array list for other names for this sandwich */
-        ArrayList<String> alsoKnownAsList = (ArrayList<String>) sandwich.getAlsoKnownAs();
+        List<String> alsoKnownAsList = sandwich.getAlsoKnownAs();
         for ( int i = 0; i < alsoKnownAsList.size(); i++) {
             if( i > 0 ) {
                 sandwichAlsoKnownAs.append(", ");
@@ -97,19 +100,13 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         /* Capture of array list for ingredients */
-        ArrayList<String> ingredientsList = (ArrayList<String>) sandwich.getIngredients();
+        List<String> ingredientsList = sandwich.getIngredients();
         for ( int i = 0; i < ingredientsList.size(); i++) {
-            if (i > 0) {
+            if( i > 0) {
                 sandwichIngredients.append(", ");
             }
-            sandwichIngredients.append(alsoKnownAsList.get(i));
+            sandwichIngredients.append(ingredientsList.get(i));
         }
-
-        Picasso.with(this)
-                .load(sandwich.getImage())
-                .into(sandwichImage);
-
-        setTitle(sandwich.getMainName());
     }
 
 

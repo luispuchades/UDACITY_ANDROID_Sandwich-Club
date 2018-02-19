@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class JsonUtils {
 
@@ -45,7 +46,7 @@ public class JsonUtils {
             JSONArray jsonArrayAlsoKnownAs = jsonObjectName.getJSONArray(SANDWICH_ALSO_KNOWN_AS);
 
             /* Creating a String ArrayList to store the array list values - STEP 2*/
-            ArrayList<String> jsonaArrayAlsoKnownAsList = new ArrayList<>();
+            List<String> jsonaArrayAlsoKnownAsList = new ArrayList<>();
 
             /* Extracting alsoKnownAs values to alsoKnownAs List " array from "name" - STEP 3 -
             Recorrer el array para extraer datos */
@@ -61,19 +62,19 @@ public class JsonUtils {
             }
 
             /* Creating a String for "placeOfOrigin" and extracting it from "name" main element */
-            String jsonObjectPlaceOfOrigin = jsonObjectName.getString(SANDWICH_PLACE_OF_ORIGIN);
+            String jsonObjectPlaceOfOrigin = sandwichJson.getString(SANDWICH_PLACE_OF_ORIGIN);
 
             /* Creating a String for "description" and extracting it from "name"*/
-            String jsonObjectDescription = jsonObjectName.getString(SANDWICH_DESCRIPTION);
+            String jsonObjectDescription = sandwichJson.getString(SANDWICH_DESCRIPTION);
 
             /* Creating a String for "images" link and extracting it from "name"*/
-            String jsonObjectImage = jsonObjectName.getString(SANDWICH_IMAGE);
+            String jsonObjectImage = sandwichJson.getString(SANDWICH_IMAGE);
 
             /* Creating a JSON Array for "ingredients" array - STEP 1*/
-            JSONArray jsonArrayIngredients = jsonObjectName.getJSONArray(SANDWICH_INGREDIENTS);
+            JSONArray jsonArrayIngredients = sandwichJson.getJSONArray(SANDWICH_INGREDIENTS);
 
             /* Creating a String ArrayList to stroe the array list values - STEP 2 */
-            ArrayList<String> jsonArrayIngredientsList = new ArrayList<>();
+            List<String> jsonArrayIngredientsList = new ArrayList<>();
 
             /* Extracting ingredients values to ingredients list - STEP 3*/
             /* Check if ingredients field is not null */
