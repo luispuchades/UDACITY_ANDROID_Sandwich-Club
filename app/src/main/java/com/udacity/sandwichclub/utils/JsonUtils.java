@@ -28,7 +28,7 @@ public class JsonUtils {
     private static final String SANDWICH_INGREDIENTS = "ingredients";
 
 
-    public static Sandwich parseSandwichJson(String json) throws JSONException {
+    public static Sandwich parseSandwichJson(String json) {
 
         try {
 

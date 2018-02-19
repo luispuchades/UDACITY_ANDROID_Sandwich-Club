@@ -13,6 +13,10 @@
     <!-- Error messages-->
     <string name="detail_error_message">Sandwich data not available</string>
 
+    <!-- TextView texts -->
+    <string name="sandwich_main_name">Sandwich Name</string>
+    <string name="no_data">No data</string>
+
     <string-array name="sandwich_names">
         <item>Ham and cheese sandwich</item>
         <item>Bosna</item>
